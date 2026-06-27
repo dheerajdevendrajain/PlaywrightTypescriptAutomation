@@ -31,14 +31,15 @@ test('Second Playwright test', async ({ page }) => {
 });
 
 
-test.only('Auth Playwright test', async ({ page }) => {
-    await page.goto('https://rahulshettyacademy.com/client');
-    console.log(await page.title()); 
-    await expect(page).toHaveTitle("Let\'s Shop");
-    await page.locator('#userEmail').fill('abcd@df.com');
-    await page.locator('#userPassword').fill('P@ssword1');
-    await page.locator('#login').click();
-    await page.locator('.card-body b').first().waitFor();
-    const titles = await page.locator('.card-body b').allTextContents();
-    console.log(titles);
+test.only('UI controls', async ({ page }) => {
+    await page.goto('https://rahulshettyacademy.com/loginpagePractise/');
+    console.log(await page.title());
+    const userName = await page.locator('#username').fill('rahulshettyacademy');
+    const password = await page.locator('#password').fill('Learning@830$3mK2');
+    const dropdown = await page.locator("select.form-control");
+    await dropdown.selectOption('consult');
+    await page.locator(".radiotextsty").last().click();
+    await page.locator('#okayBtn').click();
+
+
 });
