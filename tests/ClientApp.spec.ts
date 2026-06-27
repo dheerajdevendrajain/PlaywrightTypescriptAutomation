@@ -11,7 +11,8 @@ test.only('First Playwright test', async ({ browser }) => {
     await page.locator('#userEmail').fill('abcd@df.com');
     await page.locator('#userPassword').fill('P@ssword1');
     await page.locator('#login').click();
-    await page.waitForLoadState('networkidle');
+    //await page.waitForLoadState('networkidle'); //sometimes its flaky, so we can use waitForSelector instead of waitForLoadState
+    await page.locator('.card-body b').first().waitFor();
     const titles = await page.locator('.card-body b').allTextContents();
     console.log(titles);
 
